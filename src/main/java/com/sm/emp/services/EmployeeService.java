@@ -44,4 +44,20 @@ public class EmployeeService {
 		}
 	}
 
+	public APIResponse saveEmployee(EmployeeDto employee) {
+		try {
+			Employee employeeEntity=new Employee();
+			employeeEntity.setEmployeeEmailId(employee.getEmployeeEmailId());
+			employeeEntity.setContactNumber(employee.getContactNumber());
+			employeeEntity.setEmployeeName(employee.getEmployeeName());
+			employeeEntity.setGender(employee.getGender());
+			employeeEntity.setChildDeptId(employee.getChildDeptId());
+			employeeEntity.setPassword(employee.getPassword());
+			employeeRepo.save(employeeEntity);
+			return utility.successResponse("employee saved successfully ", employeeEntity);
+		}catch (Exception e) {
+			return utility.errorResponse("something went wrong while saving employee data. Please contact support");
+		}
+	}
+
 }

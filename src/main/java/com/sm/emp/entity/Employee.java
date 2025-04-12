@@ -37,6 +37,8 @@ public class Employee {
 	@Column(name="child_dept_id")
 	private Integer childDeptId;
 	
+	private String password;
+	
 	@ManyToOne
     @JoinColumn(name = "child_dept_id", referencedColumnName = "id", insertable = false, updatable = false)
 	@JsonBackReference

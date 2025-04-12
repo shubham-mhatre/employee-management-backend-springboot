@@ -18,4 +18,8 @@ public class EmployeeDto {
 	private String departmentName;
 	
 	private String role;
+	
+	private Integer childDeptId;
+	
+	private String password;
 }
