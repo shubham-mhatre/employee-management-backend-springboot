@@ -1,5 +1,7 @@
 package com.sm.emp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,5 +39,6 @@ public class Employee {
 	
 	@ManyToOne
     @JoinColumn(name = "child_dept_id", referencedColumnName = "id", insertable = false, updatable = false)
+	@JsonBackReference
     private ChildDepartment childDepartment;
 }

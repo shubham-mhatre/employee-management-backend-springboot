@@ -2,6 +2,8 @@ package com.sm.emp.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,8 +34,10 @@ public class ChildDepartment {
 	
 	@ManyToOne
     @JoinColumn(name = "p_dept_id", referencedColumnName = "dept_id", insertable = false, updatable = false)
+	@JsonBackReference
     private ParentDepartment parentDepartment;
 
     @OneToMany(mappedBy = "childDepartment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Employee> employees;
 }
