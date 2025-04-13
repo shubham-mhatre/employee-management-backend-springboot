@@ -60,4 +60,19 @@ public class EmployeeService {
 		}
 	}
 
+	public APIResponse deleteEmployee(int id) {
+		try {
+			Employee employeeEntity = employeeRepo.findById(id).orElse(null);
+			if(employeeEntity!=null) {
+				employeeRepo.delete(employeeEntity);
+				return utility.successResponse("employee deleted successfully ", employeeEntity);
+			}else {
+				throw new Exception("employee with id : "+id+" not found");
+			}
+		}catch(Exception e) {
+			return utility.errorResponse("something went wrong while deleting employee data. Please contact support");
+		}
+
+	}
+
 }
