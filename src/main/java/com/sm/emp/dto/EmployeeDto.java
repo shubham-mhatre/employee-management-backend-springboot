@@ -15,6 +15,7 @@ public class EmployeeDto {
 
 	private String gender;
 	
+	private Integer deptId;
 	private String departmentName;
 	
 	private String role;

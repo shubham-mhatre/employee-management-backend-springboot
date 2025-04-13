@@ -33,6 +33,9 @@ public class EmployeeService {
 						dto.setGender(employee.getGender());
 						dto.setDepartmentName(employee.getChildDepartment().getParentDepartment().getDepartmentName());
 						dto.setRole(employee.getChildDepartment().getRole());
+						dto.setPassword(employee.getPassword());
+						dto.setDeptId(employee.getChildDepartment().getParentDeptId());
+						dto.setChildDeptId(employee.getChildDeptId());
 						return dto;
 					}).toList();
 
@@ -73,6 +76,23 @@ public class EmployeeService {
 			return utility.errorResponse("something went wrong while deleting employee data. Please contact support");
 		}
 
+	}
+
+	public APIResponse updateEmployee(EmployeeDto employee) {
+		try {
+			Employee employeeEntity=new Employee();
+			employeeEntity.setEmployeeId(employee.getEmployeeId());
+			employeeEntity.setEmployeeEmailId(employee.getEmployeeEmailId());
+			employeeEntity.setContactNumber(employee.getContactNumber());
+			employeeEntity.setEmployeeName(employee.getEmployeeName());
+			employeeEntity.setGender(employee.getGender());
+			employeeEntity.setChildDeptId(employee.getChildDeptId());
+			employeeEntity.setPassword(employee.getPassword());
+			employeeRepo.save(employeeEntity);
+			return utility.successResponse("employee saved successfully ", employeeEntity);
+		}catch (Exception e) {
+			return utility.errorResponse("something went wrong while saving employee data. Please contact support");
+		}
 	}
 
 }
